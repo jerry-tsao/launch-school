@@ -1,0 +1,8 @@
+8. To what value does the following expression evaluate?
+
+'12' < '9'
+
+
+The expression will evaluate to True. Strings are compared lexicographically
+character by character from left to right. Since 1 is less than 9, '12' is less
+than '9'.

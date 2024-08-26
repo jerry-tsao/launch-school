@@ -1,0 +1,7 @@
+7. What will the followinng code do? Why?
+
+int('3.1415')
+
+
+The code will coerce the string '3.1415' into an integer. However, the value of
+'3.1415' is not an integer, so it will result in an error.

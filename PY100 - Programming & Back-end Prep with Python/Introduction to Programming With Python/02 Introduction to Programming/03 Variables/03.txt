@@ -1,0 +1,26 @@
+1. Classify the following potential constant names as idiomatic, non-idiomatic,
+or illegal. For the non-idiomatic and illegal names, explain your choice.
+
+Name
+--------------
+index
+CatName
+snake_case
+LAZY_DOG3
+1ST
+operand2
+BIG_NUMBER
+π
+
+
+Name          Classification  Explanation
+-------------------------------------------------------------------------
+index         non-idiomatic   Use all upper case letters
+CatName       non-idiomatic   Use screaming snake case instead
+snake_case    non-idiomatic   Use all upper case letters
+LAZY_DOG3     idiomatic
+1ST           illegal         Starts with a number
+operand2      non-idiomatic   Use all upper case letters
+BIG_NUMBER    idiomatic
+π             illegal         Not a valid ASCII character
+

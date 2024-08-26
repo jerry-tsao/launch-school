@@ -1,0 +1,16 @@
+2. Take a look at this code snippet:
+
+foo = 'bar'
+
+def set_foo():
+    foo = 'qux'
+
+set_foo()
+print(foo)
+
+What does this program print? Why?
+
+
+The program will print "bar". The line "foo = 'qux'" inside the set_foo()
+function creates a local variable "foo", which does not affect the global
+"foo" initialized in line 1.

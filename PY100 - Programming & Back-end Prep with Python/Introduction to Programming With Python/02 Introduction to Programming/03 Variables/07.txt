@@ -1,0 +1,17 @@
+7. What happens when you run the following code? Why?
+
+NAME = 'Victor'
+print('Good Morning, ' + NAME)
+print('Good Afternoon, ' + NAME)
+print('Good Evening, ' + NAME)
+
+NAME = 'Nina'
+print('Good Morning, ' + NAME)
+print('Good Afternoon, ' + NAME)
+print('Good Evening, ' + NAME)
+
+
+Victor will be greeted three times, and then Nina will be greeted three times.
+Even though "NAME" is in all uppercase letters, Python does not treat constants
+any differently than variables. Therefore, reassigning "NAME" from "Victor" to
+"Nina" is valid in Python.

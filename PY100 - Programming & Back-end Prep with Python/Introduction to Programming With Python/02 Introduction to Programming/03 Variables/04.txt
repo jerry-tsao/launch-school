@@ -1,0 +1,24 @@
+1. Classify the following potential class names as idiomatic, non-idiomatic, or
+illegal. For the non-idiomatic and illegal names, explain your choice.
+
+Name
+--------------
+index
+CatName
+Lazy_Dog
+1ST
+operand2
+BigNumber3
+πi
+
+
+Name          Classification  Explanation
+-------------------------------------------------------------------------
+index         non-idiomatic   Capitalize the first letter
+CatName       idiomatic
+Lazy_Dog      non-idiomatic   Remove the underscore
+1ST           illegal         Starts with a number
+operand2      non-idiomatic   Capitalize the first letter
+BigNumber3    idiomatic
+πi            illegal         π is not a valid ASCII character
+

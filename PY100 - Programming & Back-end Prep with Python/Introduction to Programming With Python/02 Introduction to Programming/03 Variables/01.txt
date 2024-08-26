@@ -1,0 +1,27 @@
+1. Classify the following potential non-constant variable names as idiomatic,
+non-idiomatic, or illegal. For the non-idiomatic and illegal names, explain
+your choice.
+
+Name
+--------------
+index
+CatName
+lazy_dog
+quick_Fox
+1stCharacter
+operand2
+BIG_NUMBER
+π
+
+
+Name          Classification  Explanation
+-------------------------------------------------------------------------
+index         idiomatic
+CatName       non-idiomatic   Use snake case instead of PascalCase
+lazy_dog      idiomatic
+quick_Fox     non-idiomatic   Do not use capital letters
+1stCharacter  illegal         Starts with a number
+operand2      idiomatic
+BIG_NUMBER    non-idiomatic   All caps should be reserved for constants
+π             illegal         Not a valid ASCII character
+

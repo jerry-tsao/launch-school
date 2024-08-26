@@ -1,0 +1,11 @@
+7. Without running the following code, what do you think it will do?
+
+def foo(bar, qux):
+    print(bar)
+    print(qux)
+
+foo('Hello')
+
+
+The code will raise an error as foo() requires two arguments, whereas the
+function call only contains one argument.

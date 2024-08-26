@@ -1,0 +1,12 @@
+12. Without running the following code, what do you think it will do?
+
+def foo(first, second=3, third=2):
+    print(first)
+    print(second)
+    print(third)
+
+foo()
+
+
+The code will raise an error. The parameter "first" has no default value, so
+the function call needs to include an argument for "first".

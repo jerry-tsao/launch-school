@@ -1,0 +1,12 @@
+1. What happens when you run the following program? Why do we get that result?
+
+def set_foo():
+    foo = 'bar'
+
+set_foo()
+print(foo)
+
+
+We will get an error. "foo" is a local variable in the "set_foo()" function, so
+the print statement at the end of the code is unable to access it. It is out of
+scope.

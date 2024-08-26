@@ -1,0 +1,28 @@
+1. Identify the data type or class for each of the following values:
+
+Value
+---------------
+'True'
+False
+(1, 2, 3)
+1.5
+[1, 2, 3]
+2
+range(5)
+{1, 2, 3}
+None
+{'foo': 'bar'}
+
+
+Value            Type
+------------------------------
+'True'           String 
+False            Boolean
+(1, 2, 3)        Tuple
+1.5              Float
+[1, 2, 3]        List   
+2                Integer
+range(5)         Range
+{1, 2, 3}        Set
+None             Nonetype  
+{'foo': 'bar'}   Dictionary
