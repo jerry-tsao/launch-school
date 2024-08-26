@@ -1,0 +1,6 @@
+5. How do the set types differ from the sequence types?
+
+
+Unlike sequences, sets do not preserve the order of their elements.
+Additionally, sets cannot contain duplicate elements (every element must be
+unique).

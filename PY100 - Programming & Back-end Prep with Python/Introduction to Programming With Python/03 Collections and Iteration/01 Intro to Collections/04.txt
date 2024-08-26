@@ -1,0 +1,6 @@
+4. Why can we treat strings as sequences?
+
+
+Just as sequences preserve the order of their elements, strings also preserve
+the order of their characters. Characters in strings can be accessed the same
+way as elements in sequences (indexing).
