@@ -1,0 +1,14 @@
+15. Without running the following code, what values will be printed by line 10?
+
+ 1| pets = {
+ 2|     'Cat':  'Meow',
+ 3|     'Dog':  'Bark',
+ 4|     'Bird': 'Tweet',
+ 5| }
+ 6| 
+ 7| keys = pets.keys()
+ 8| del pets['Dog']
+ 9| pets['Snake'] = 'Sssss'
+10| print(keys)
+
+['Cat', 'Bird', 'Snake']

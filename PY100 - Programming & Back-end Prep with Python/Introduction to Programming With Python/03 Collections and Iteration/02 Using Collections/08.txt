@@ -1,0 +1,13 @@
+8. Explain why the code below prints different values on lines 3 and 4.
+
+text = "It's probably pining for the fjords!"
+
+print(text[21:35].rfind('f'))     # 8
+print(text.rfind('f', 21, 35))    # 29
+
+
+In the first print statement, "rfind" is operating on a new string created by
+slicing text. The first "f" character occurs at index 8 of the new string. In
+the second print statement, "rfind" is operating on the existing "text" string,
+but it is starting the search at index 21. Therefore, it finds the first
+occurence of "f" at index 29 of the existing "text" string.
