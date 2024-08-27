@@ -1,0 +1,8 @@
+1. In your own words, explain the difference between these two expressions.
+
+my_object1 == my_object2
+my_object1 is my_object2
+
+
+The first expression compares the values of my_object1 and my_object 2, while
+the second expression compares the identities of the two objects.

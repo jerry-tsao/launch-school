@@ -1,0 +1,16 @@
+4. Without running this code, what will it print? Why?
+
+dict1 = {
+    'a': [1, 2, 3],
+    'b': (4, 5, 6),
+}
+
+dict2 = dict(dict1)
+dict1['a'][1] = 42
+print(dict2['a'])
+
+
+The code will print [1, 42, 3]. Even though the line "dict2 = dict(dict1)"
+creates a new dictionary with the same key/value pairs as dict1, both
+dictionaries have the same reference to the same object [1, 2, 3] as the copy
+is shallow.
