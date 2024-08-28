@@ -1,0 +1,17 @@
+What's my value? (Part 9)
+
+What will the following code do and why? Don't run it until you have tried to
+answer.
+
+a = 7
+
+def my_function(b):
+    b += 10
+
+my_function(a)
+print(a)
+
+
+The code will print 7. In the function call, the value of "a" is passed to
+my_function. It creates a local variable "b", which ends up with the value 17.
+However, the global variable "a" does not get modified.

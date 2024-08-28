@@ -1,0 +1,13 @@
+What's my value? (Part 1)
+
+What will the following code do and why? Don't run it until you have tried to
+answer.
+
+if True:
+    my_value = 20
+
+print(my_value)
+
+
+The code will print 20. The variable my_value is in the same scope as the print
+statement and can therefore be accessed.

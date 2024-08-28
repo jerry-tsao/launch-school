@@ -1,0 +1,17 @@
+What's my value? (Part 5)
+
+What will the following code do and why? Don't run it until you have tried to
+answer.
+
+a = 1
+
+def my_function():
+    print(a)
+    a = 2
+
+my_function()
+
+
+The code will throw an error. Since the variable "a" is assigned inside
+my_function() an thus a local variable, it cannot be printed before its value
+is assigned.
