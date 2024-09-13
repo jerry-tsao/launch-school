@@ -1,0 +1,62 @@
+{
+    "en": {
+        "welcome": "Welcome to Calculator!",
+        "first_number": "What's the first number?",
+        "second_number": "What's the second number?",
+        "invalid_number": "Hmm... that doesn't look like a valid number. Try again.",
+        "operation": "What operation would you like to perform?\n1) Add 2) Subtract 3) Multiply 4) Divide",
+        "operation_error": "You must choose 1, 2, 3, or 4",
+        "result": "f'The result is {output}'",
+        "another_calculation": "Would you like to perform another calculation? (y/n)"
+    },
+    "fr": {
+        "welcome": "Bienvenue dans la calculatrice!",
+        "first_number": "Quel est le premier nombre?",
+        "second_number": "Quel est le deuxième nombre?",
+        "invalid_number": "Hmm... ça ne semble pas être un nombre valide. Réessayez.",
+        "operation": "Quelle opération souhaitez-vous effectuer?\n1) Additionner 2) Soustraire 3) Multiplier 4) Diviser",
+        "operation_error": "Vous devez choisir 1, 2, 3 ou 4",
+        "result": "f'Le résultat est {output}'",
+        "another_calculation": "Souhaitez-vous effectuer un autre calcul? (y/n)"
+    },
+    "es": {
+        "welcome": "¡Bienvenido a la Calculadora!",
+        "first_number": "¿Cuál es el primer número?",
+        "second_number": "¿Cuál es el segundo número?",
+        "invalid_number": "Hmm... ese no parece un número válido. Inténtalo de nuevo.",
+        "operation": "¿Qué operación te gustaría realizar?\n1) Sumar 2) Restar 3) Multiplicar 4) Dividir",
+        "operation_error": "Debes elegir 1, 2, 3 o 4",
+        "result": "f'El resultado es {output}'",
+        "another_calculation": "¿Le gustaría realizar otro cálculo? (y/n)"
+    },
+    "ja": {
+        "welcome": "電卓へようこそ!",
+        "first_number": "最初の数字は何ですか?",
+        "second_number": "2 番目の数字は何ですか?",
+        "invalid_number": "うーん...有効な数値ではないようです。もう一度試してください。",
+        "operation": "どのような演算を実行しますか?\n1) 加算 2) 減算 3) 乗算 4) 除算",
+        "operation_error": "1、2、3、または 4 を選択する必要があります",
+        "result": "f'結果は {output}'",
+        "another_calculation": "別の計算を実行しますか? (y/n)"
+    },
+    "ko": {
+        "welcome": "계산기에 오신 것을 환영합니다!",
+        "first_number": "첫 번째 숫자는 무엇입니까?",
+        "second_number": "두 번째 숫자는 무엇입니까?",
+        "invalid_number": "흠... 유효한 숫자가 아닌 것 같습니다. 다시 시도하세요.",
+        "operation": "어떤 연산을 수행하시겠습니까?\n1) 더하기 2) 빼기 3) 곱하기 4) 나누기",
+        "operation_error": "1, 2, 3, 4 중 하나를 선택해야 합니다",
+        "result": "f'결과는 {output} 입니다.'",
+        "another_calculation": "다른 계산을 수행하시겠습니까? (y/n)"
+    },
+    "zh": {
+        "welcome": "欢迎使用计算器！",
+        "first_number": "第一个数字是多少？",
+        "second_number": "第二个数字是多少？",
+        "invalid_number": "嗯...这看起来不像有效号码。请重试。",
+        "operation": "您要执行什么运算？\n1) 加 2) 减 3) 乘 4) 除",
+        "operation_error": "您必须选择 1、2、3 或 4",
+        "result": "f'结果为{output}'",
+        "another_calculation": "您想进行另一次计算吗？(y/n)"
+    }
+}
