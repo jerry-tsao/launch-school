@@ -1,0 +1,131 @@
+1. A function that returns the sum of two numbers
+
+Given two numbers:
+- Add the first number to the second number
+- Return the value
+
+START
+
+READ number1, number2
+
+SET sum = number1 + number2
+
+PRINT sum
+
+END
+
+
+2. A function that takes a list of strings, and returns a string that is all
+   those strings concatenated together
+
+Given a list of strings
+- Iterate through the list of strings one by one
+  - Save the first string as the starting value
+  - For each iteration, append the current string to the end of the saved value
+- Return the saved value
+
+START
+
+# Given a list of strings called "strings"
+
+SET iterator = 1
+SET saved_value = first string in "strings"
+
+WHILE iterator <= length of strings
+    SET current_value = string at the position "iterator"
+    saved_value = concatenate current_value to the end of saved_value
+
+    iterator = iterator + 1
+
+PRINT saved_value
+
+
+3. A function that takes a list of integers, and returns a new list with every
+   other element from the original list, starting with the first element. For
+   instance:
+
+   every_other([1,4,7,2,5]) # => [1,7,5]
+
+Given a list of integers
+- Iterate through the list of integers one by one
+  - Add the first integer to the saved list
+  - For each iteration, if the position of the integer in the initial list is
+    odd, append the integer to the saved list. If the position is even, skip it.
+- Return the saved list
+
+START
+
+# Given a list of integers called "numbers"
+
+SET iterator = 1
+SET saved_value = [first integer in "numbers"]
+
+WHILE iterator <= length of numbers
+    SET current_value = value within "numbers" list at position "iterator"
+    IF iterator is odd
+        APPEND current_value to saved_value
+
+PRINT saved_value
+
+END
+
+
+4. A function that determines the index of the 3rd occurrence of a given
+   character in a string. For instance, if the given character is 'x' and the
+   string is 'axbxcdxex', the function should return 6 (the index of the 3rd
+   'x'). If the given character does not occur at least 3 times, return None.
+
+Given a string
+- Iterate through the characters one by one.
+  - If the character is 'x', increment the count by one.
+    - If the count is three, save the position of the character.
+- Return the position of the character.
+
+START
+
+# Given a string called "string"
+# Given a character called "given_character"
+
+SET count = 0
+SET position = None
+
+FOR character in string
+    IF character and given_character are the same
+        count += 1
+        IF count == 3
+            position = position of character
+            break
+
+PRINT position
+
+
+5. A function that takes two lists of numbers and returns the result of merging
+   the lists. The elements of the first list should become the elements at the
+   even indexes of the returned list, while the elements of the second list
+   should become the elements at the odd indexes. For instance:
+
+   merge([1, 2, 3], [4, 5, 6]) # => [1, 4, 2, 5, 3, 6]
+
+   You may assume that both list arguments have the same number of elements.
+
+Given two lists of numbers
+- Iterate through the first list one by one.
+  - For each iteration, append the number from the first list to a final list,
+    and append the number at the same position in the second list to the final
+    list.
+- Return the final list.
+
+START
+
+# Given two lists of numbers (list1 and list2)
+
+SET iterator = 1
+SET final_list = []
+
+WHILE iterator <= length of list1
+    final_list.append(number at iterator position of list1)
+    final_list.append(number at iterator position of list2)
+    
+    iterator += 1
+
+PRINT final_list
