@@ -18,10 +18,8 @@
 def invalid_number(num):
     try:
         number = float(num)
-        
         if number < 0:
-            raise ValueError(f'The number cannot be negative.')
-        
+            raise ValueError('The number cannot be negative.')
     except ValueError:
         return True
 
@@ -51,7 +49,7 @@ def get_loan_duration():
     while invalid_number(loan_duration):
         print('Please enter a valid loan duration.')
         loan_duration = input('Loan duration in years: ')
-    
+
     return float(loan_duration)
 
 def calculate_monthly_payment(loan_amount, apr, loan_duration):
@@ -62,23 +60,23 @@ def calculate_monthly_payment(loan_amount, apr, loan_duration):
     if monthly_interest_rate == 0:
         monthly_payment = loan_amount / loan_duration_months
     else:
-        monthly_payment = loan_amount * (monthly_interest_rate / 
-                                        (1 - 
+        monthly_payment = loan_amount * (monthly_interest_rate /
+                                        (1 -
                                         (1 + monthly_interest_rate)**
                                         (-loan_duration_months)))
-    
+
     return monthly_payment
 
 def loan_calculator():
     loan_amount = get_loan_amount()
-
     apr = get_apr()
-
     loan_duration = get_loan_duration()
     loan_duration_months = loan_duration * 12
 
-    monthly_payment = calculate_monthly_payment(loan_amount, apr, loan_duration)
-    
+    monthly_payment = calculate_monthly_payment(loan_amount,
+                                                apr,
+                                                loan_duration)
+
     print(f'The monthly payment for your loan of ${loan_amount:,.2f} at '
           f'{apr:,.3f}% APR over {loan_duration:,.1f} years '
           f'({loan_duration_months:,.0f} months) is ${monthly_payment:,.2f}.')
