@@ -1,5 +1,6 @@
 # Loan Calculator
 
+import math
 import os
 from subprocess import call
 
@@ -19,9 +20,9 @@ def invalid_number(num):
         number = float(num)
         if number <= 0:
             raise ValueError('The number must be positive.')
-        elif number == float('inf'):
+        if number == float('inf'):
             raise ValueError('The number cannot be infinite.')
-        elif number != number:
+        if math.isnan(number):
             raise ValueError('The number cannot be NaN.')
     except ValueError:
         return True
@@ -33,9 +34,9 @@ def invalid_apr(num):
         number = float(num)
         if number < 0:
             raise ValueError('The number cannot be negative.')
-        elif number == float('inf'):
+        if number == float('inf'):
             raise ValueError('The number cannot be infinite.')
-        elif number != number:
+        if math.isnan(number):
             raise ValueError('The number cannot be NaN.')
     except ValueError:
         return True
