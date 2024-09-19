@@ -18,18 +18,28 @@
 def invalid_number(num):
     try:
         number = float(num)
-        if number < 0:
+        if number <= 0:
             raise ValueError('The number cannot be negative.')
     except ValueError:
         return True
 
     return False
 
+def invalid_apr(num):
+    try:
+        number = float(num)
+        if number < 0:
+            raise ValueError('The number cannot be negative.')
+    except ValueError:
+        return True
+    
+    return False
+
 def get_loan_amount():
     loan_amount = input('Loan amount: $')
 
     while invalid_number(loan_amount):
-        print('Please enter a valid loan amount.')
+        print('Please enter a valid loan amount greater than $0.')
         loan_amount = input('Loan amount: $')
 
     return float(loan_amount)
@@ -37,9 +47,9 @@ def get_loan_amount():
 def get_apr():
     apr = input('APR in % ("3.25" for 3.25%): ')
 
-    while invalid_number(apr):
-        print('Please enter a valid APR.')
-        apr = input('APR in %: ')
+    while invalid_apr(apr):
+        print('Please enter a valid APR of 0% or greater.')
+        apr = input('APR in % ("3.25" for 3.25%): ')
 
     return float(apr)
 
@@ -47,7 +57,7 @@ def get_loan_duration():
     loan_duration = input('Loan duration in years: ')
 
     while invalid_number(loan_duration):
-        print('Please enter a valid loan duration.')
+        print('Please enter a valid loan duration greater than 0.')
         loan_duration = input('Loan duration in years: ')
 
     return float(loan_duration)
