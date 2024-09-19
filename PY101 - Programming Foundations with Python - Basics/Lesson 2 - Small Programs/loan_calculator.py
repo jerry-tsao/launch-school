@@ -17,7 +17,7 @@ def welcome():
 
 def invalid_number(num):
     try:
-        number = float(num)
+        number = float(num.replace('$', '').replace(',', ''))
         if number <= 0:
             raise ValueError('The number must be positive.')
         if number == float('inf'):
@@ -31,7 +31,7 @@ def invalid_number(num):
 
 def invalid_apr(num):
     try:
-        number = float(num)
+        number = float(num.replace('%', '').replace(',', ''))
         if number < 0:
             raise ValueError('The number cannot be negative.')
         if number == float('inf'):
@@ -70,7 +70,9 @@ def get_loan_amount():
             loan_amount = input('Loan amount: $')
             print()
 
-        print(f'Your loan amount is ${float(loan_amount):,.2f}.')
+        loan_amount_cleaned = loan_amount.replace('$', '').replace(',', '')
+
+        print(f'Your loan amount is ${float(loan_amount_cleaned):,.2f}.')
         print('Is this correct? (y/n)')
 
         answer = check_y_n()
@@ -78,7 +80,7 @@ def get_loan_amount():
         if answer == 'y':
             break
 
-    return float(loan_amount)
+    return float(loan_amount_cleaned)
 
 def get_apr():
     while True:
@@ -93,7 +95,9 @@ def get_apr():
             apr = input('APR: ')
             print()
 
-        print(f'Your APR is {float(apr):,.3f}%.')
+        apr_cleaned = apr.replace('%', '').replace(',', '')
+
+        print(f'Your APR is {float(apr_cleaned):,.3f}%.')
         print('Is this correct? (y/n)')
 
         answer = check_y_n()
@@ -130,13 +134,15 @@ def get_loan_duration():
             loan_duration = input('Loan duration: ')
             print()
 
+        loan_duration_cleaned = loan_duration.replace('$', '').replace(',', '')
+
         loan_duration_years = (
-            float(loan_duration) if duration_type == 'y'
-            else float(loan_duration) / 12)
+            float(loan_duration_cleaned) if duration_type == 'y'
+            else float(loan_duration_cleaned) / 12)
 
         loan_duration_months = (
-            float(loan_duration) if duration_type == 'm'
-            else float(loan_duration) * 12)
+            float(loan_duration_cleaned) if duration_type == 'm'
+            else float(loan_duration_cleaned) * 12)
 
         print(f'Your loan duration is {loan_duration_years:,.1f} year(s) or '
             f'{loan_duration_months:,.0f} month(s).')
