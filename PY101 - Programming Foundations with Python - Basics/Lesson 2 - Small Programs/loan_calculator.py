@@ -7,11 +7,28 @@ from subprocess import call
 def clear():
     _ = call('clear' if os.name == 'posix' else 'cls')
 
-def welcome():
+def info_block(loan_amount = '',
+                apr = '',
+                loan_duration_years = '',
+                loan_duration_months = '',
+                monthly_payment = ''):
     clear()
     print()
     print('-------------------------------------')
+    print()
     print('   Welcome to the Loan Calculator!')
+    print()
+    print('-------------------------------------')
+    print()
+    print(f'   Loan amount: {loan_amount}')
+    print(f'   APR: {apr}')
+    print(f'   Loan duration (years): {loan_duration_years}')
+    print(f'   Loan duration (months): {loan_duration_months}')
+    print()
+    print('-------------------------------------')
+    print()
+    print(f'   Monthly payment: {monthly_payment}')
+    print()
     print('-------------------------------------')
     print()
 
@@ -170,48 +187,41 @@ def calculate_monthly_payment(loan_amount, apr, loan_duration_months):
     return monthly_payment
 
 def loan_calculator():
-    welcome()
+    info_block()
 
     loan_amount = get_loan_amount()
-    welcome()
-    print(f'   Loan amount: ${loan_amount:,.2f}')
-    print()
-    print('-------------------------------------')
-    print()
+    info_block(f'${loan_amount:,.2f}')
 
     apr = get_apr()
-    welcome()
-    print(f'   Loan amount: ${loan_amount:,.2f}')
-    print(f'   APR: {apr:,.3f}%')
-    print()
-    print('-------------------------------------')
-    print()
+    info_block(f'${loan_amount:,.2f}', f'{apr:,.3f}%')
 
     loan_duration_years, loan_duration_months = get_loan_duration()
-    welcome()
-    print(f'   Loan amount: ${loan_amount:,.2f}')
-    print(f'   APR: {apr:,.3f}%')
-    print(f'   Loan duration (years): {loan_duration_years:,.1f}')
-    print(f'   Loan duration (months): {loan_duration_months:,.0f}')
-    print()
+    info_block(f'${loan_amount:,.2f}',
+               f'{apr:,.3f}%',
+               f'{loan_duration_years:,.1f}',
+               f'{loan_duration_months:,.0f}')
 
     monthly_payment = calculate_monthly_payment(loan_amount,
                                                 apr,
                                                 loan_duration_months)
+    info_block(f'${loan_amount:,.2f}',
+               f'{apr:,.3f}%',
+               f'{loan_duration_years:,.1f}',
+               f'{loan_duration_months:,.0f}',
+               f'${monthly_payment:,.2f}')
 
-    print('-------------------------------------')
-    print(f'   Monthly payment: ${monthly_payment:,.2f}')
-    print('-------------------------------------')
-    print()
+def main():
+    while True:
+        loan_calculator()
 
-while True:
-    loan_calculator()
+        print('Thank you for using the loan calculator!')
+        print()
+        print('Would you like to calculate another monthly payment? (y/n)')
 
-    print('Thank you for using the loan calculator!')
-    print()
-    print('Would you like to calculate another monthly payment? (y/n)')
+        ans = check_y_n()
 
-    ans = check_y_n()
+        if ans == 'n':
+            break
 
-    if ans == 'n':
-        break
+if __name__ == '__main__':
+    main()
