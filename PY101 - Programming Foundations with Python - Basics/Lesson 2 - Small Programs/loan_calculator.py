@@ -1,18 +1,4 @@
-# Info needed:
-# - loan amount
-# - Annual Percentage Rate (APR)
-# - loan duration
-
-# Calculate the following:
-# - monthly interest rate (APR / 12)
-# - loan duration in months
-
-# Formula:
-# m = p * (j / (1 - (1 + j) ** (-n)))
-# m = monthly payment
-# p = loan amount
-# j = monthly interest rate
-# n = loan duration in months
+# Loan Calculator
 
 import os
 from subprocess import call
@@ -32,7 +18,7 @@ def invalid_number(num):
     try:
         number = float(num)
         if number <= 0:
-            raise ValueError('The number cannot be negative.')
+            raise ValueError('The number must be positive.')
     except ValueError:
         return True
 
