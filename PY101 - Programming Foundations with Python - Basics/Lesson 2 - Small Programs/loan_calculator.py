@@ -4,30 +4,26 @@ import math
 import os
 from subprocess import call
 
-info = {
-    'loan_amount': '',
-    'apr': '',
-    'loan_duration_years': '',
-    'loan_duration_months': '',
-    'monthly_payment': '',
-}
-
-def reset_info():
-    info['loan_amount'] = ''
-    info['apr'] = ''
-    info['loan_duration_years'] = ''
-    info['loan_duration_months'] = ''
-    info['monthly_payment'] = ''
-
 def clear():
     _ = call('clear' if os.name == 'posix' else 'cls')
 
-def display_info_block():
-    loan_amount = info['loan_amount']
-    apr = info['apr']
-    loan_duration_years = info['loan_duration_years']
-    loan_duration_months = info['loan_duration_months']
-    monthly_payment = info['monthly_payment']
+def new_loan_info():
+    loan_info = {
+        'loan_amount': '',
+        'apr': '',
+        'loan_duration_years': '',
+        'loan_duration_months': '',
+        'monthly_payment': '',
+    }
+
+    return loan_info
+
+def display_info_block(loan_info):
+    loan_amount = loan_info['loan_amount']
+    apr = loan_info['apr']
+    loan_duration_years = loan_info['loan_duration_years']
+    loan_duration_months = loan_info['loan_duration_months']
+    monthly_payment = loan_info['monthly_payment']
 
     print()
     print('-------------------------------------')
@@ -48,10 +44,10 @@ def display_info_block():
     print('-------------------------------------')
     print()
 
-def update_info_block(k, v):
-    info[k] = v
+def update_info_block(loan_info, k, v):
+    loan_info[k] = v
     clear()
-    display_info_block()
+    display_info_block(loan_info)
 
 def prompt(message):
     print(message)
@@ -93,7 +89,7 @@ def check_y_n():
     blank_line()
 
     while True:
-        if answer_lower.startswith('y') or answer_lower.startswith('n'):
+        if answer_lower in ('y', 'yes', 'n', 'no'):
             break
 
         prompt(f'{answer} is an invalid response.')
@@ -103,6 +99,13 @@ def check_y_n():
         blank_line()
 
     return answer_lower[0]
+
+def confirm_data_input():
+    prompt('Is this correct? (y/n)')
+
+    answer = check_y_n()
+
+    return answer
 
 def get_loan_amount():
     while True:
@@ -120,9 +123,8 @@ def get_loan_amount():
         loan_amount_cleaned = loan_amount.replace('$', '').replace(',', '')
 
         prompt(f'Your loan amount is ${float(loan_amount_cleaned):,.2f}.')
-        prompt('Is this correct? (y/n)')
 
-        answer = check_y_n()
+        answer = confirm_data_input()
 
         if answer == 'y':
             break
@@ -145,64 +147,69 @@ def get_apr():
         apr_cleaned = apr.replace('%', '').replace(',', '')
 
         prompt(f'Your APR is {float(apr_cleaned):,.3f}%.')
-        prompt('Is this correct? (y/n)')
 
-        answer = check_y_n()
+        answer = confirm_data_input()
 
         if answer == 'y':
             break
 
     return float(apr)
 
-def get_loan_duration():
+def get_loan_duration_type():
+    prompt('Would you like to enter the loan duration in years or months?')
+    prompt('Enter "y" for years or "m" for months.')
     while True:
-        prompt('Would you like to enter the loan duration in years or months?')
-        prompt('Enter "y" for years or "m" for months.')
         duration_type = input('(y/m): ')
         duration_type_lower = duration_type.lower()
         blank_line()
-        while True:
-            if (duration_type_lower.startswith('y') or
-                duration_type_lower.startswith('m')):
-                break
+        if duration_type_lower in ('y', 'yr', 'yrs', 'year', 'years', 'm',
+                                   'mo', 'mos', 'mon', 'mons', 'month',
+                                   'months'):
+            break
 
-            prompt(f'{duration_type} is an invalid response.')
-            blank_line()
-            prompt('Please enter "y" or "m".')
-            duration_type = input('(y/m): ')
-            duration_type_lower = duration_type.lower()
-            blank_line()
+        prompt(f'{duration_type} is an invalid response.')
+        blank_line()
+        prompt('Please enter "y" or "m".')
 
-        duration_type_code = duration_type_lower[0]
+    duration_type_code = duration_type_lower[0]
 
-        prompt('What is the loan duration in '
-              f'{'years' if duration_type_code == 'y' else 'months'}?')
-        loan_duration = input('#: ')
+    return duration_type_code
+
+def get_loan_duration_num(loan_duration_type):
+    prompt('What is the loan duration in '
+            f'{'years' if loan_duration_type == 'y' else 'months'}?')
+    loan_duration_num = input('#: ')
+    blank_line()
+
+    while invalid_number(loan_duration_num):
+        prompt(f'{loan_duration_num} is an invalid loan '
+                'duration.')
+        blank_line()
+        prompt('Please enter a valid loan duration greater than 0.')
+        loan_duration_num = input('#: ')
         blank_line()
 
-        while invalid_number(loan_duration):
-            prompt(f'{loan_duration} is an invalid loan '
-                   'duration.')
-            blank_line()
-            prompt('Please enter a valid loan duration greater than 0.')
-            loan_duration = input('#: ')
-            blank_line()
+    loan_duration_cleaned = loan_duration_num.replace('$', '').replace(',', '')
 
-        loan_duration_cleaned = loan_duration.replace('$', '').replace(',', '')
+    return loan_duration_cleaned
+
+def get_loan_duration():
+    while True:
+        loan_duration_type = get_loan_duration_type()
+        loan_duration_num = get_loan_duration_num(loan_duration_type)
 
         loan_duration_years = (
-            float(loan_duration_cleaned) if duration_type_code == 'y'
-            else float(loan_duration_cleaned) / 12)
+            float(loan_duration_num) if loan_duration_type == 'y'
+            else float(loan_duration_num) / 12)
 
         loan_duration_months = (
-            float(loan_duration_cleaned) if duration_type_code == 'm'
-            else float(loan_duration_cleaned) * 12)
+            float(loan_duration_num) if loan_duration_type == 'm'
+            else float(loan_duration_num) * 12)
 
         prompt(f'Your loan duration is {loan_duration_years:,.2f} year(s) or '
             f'{loan_duration_months:,.0f} month(s).')
-        prompt('Is this correct? (y/n)')
 
-        answer = check_y_n()
+        answer = confirm_data_input()
 
         if answer == 'y':
             break
@@ -225,42 +232,50 @@ def calculate_monthly_payment(loan_amount, apr, loan_duration_months):
 
 def loan_calculator():
     clear()
-    display_info_block()
+
+    loan_info = new_loan_info()
+
+    display_info_block(loan_info)
 
     loan_amount = get_loan_amount()
-    update_info_block('loan_amount', f'${loan_amount:,.2f}')
+    update_info_block(loan_info, 'loan_amount', f'${loan_amount:,.2f}')
 
     apr = get_apr()
-    update_info_block('apr', f'{apr:,.3f}%')
+    update_info_block(loan_info, 'apr', f'{apr:,.3f}%')
 
     loan_duration_years, loan_duration_months = get_loan_duration()
-    update_info_block('loan_duration_years', f'{loan_duration_years:,.2f}')
-    update_info_block('loan_duration_months', f'{loan_duration_months:,.0f}')
+    update_info_block(loan_info, 'loan_duration_years',
+                      f'{loan_duration_years:,.2f}')
+    update_info_block(loan_info, 'loan_duration_months',
+                      f'{loan_duration_months:,.0f}')
 
     monthly_payment = calculate_monthly_payment(loan_amount,
                                                 apr,
                                                 loan_duration_months)
-    update_info_block('monthly_payment', f'${monthly_payment:,.2f}')
+    update_info_block(loan_info, 'monthly_payment', f'${monthly_payment:,.2f}')
 
     prompt('Thank you for using the loan calculator!')
     blank_line()
 
-def new_calculation():
-    while True:
-        prompt('Would you like to calculate another monthly payment? (y/n)')
+def ask_calculate_again():
+    prompt('Would you like to calculate another monthly payment? (y/n)')
+    answer = check_y_n()
 
-        answer = check_y_n()
+    return answer
+
+def calculate_again():
+    while True:
+        answer = ask_calculate_again()
 
         if answer == 'n':
             clear()
             break
 
-        reset_info()
         loan_calculator()
 
 def main():
     loan_calculator()
-    new_calculation()
+    calculate_again()
 
 if __name__ == '__main__':
     main()
