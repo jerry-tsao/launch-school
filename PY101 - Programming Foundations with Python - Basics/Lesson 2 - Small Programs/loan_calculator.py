@@ -84,19 +84,16 @@ def invalid_apr(num):
     return False
 
 def check_y_n():
-    answer = input('(y/n): ')
-    answer_lower = answer.lower()
-    blank_line()
-
     while True:
-        if answer_lower in ('y', 'yes', 'n', 'no'):
+        answer = input('(y/n): ')
+        answer_lower = answer.lower()
+        blank_line()
+
+        if answer_lower.startswith('y') or answer_lower.startswith('n'):
             break
 
         prompt(f'{answer} is an invalid response.')
         prompt('Please enter "y" or "n".')
-        answer = input('(y/n): ')
-        answer_lower = answer.lower()
-        blank_line()
 
     return answer_lower[0]
 
