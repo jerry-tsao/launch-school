@@ -196,7 +196,7 @@ def check_y_n():
         answer_lower = answer.lower().strip(' ()')
         blank_line()
 
-        if answer_lower in ('y', 'yes', 'n', 'no'):
+        if answer_lower in ['y', 'yes', 'n', 'no']:
             break
 
         prompt(f'{answer} is an invalid response.')
