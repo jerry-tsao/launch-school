@@ -31,6 +31,13 @@ RULES = {
     ('rock', 'scissors'): 'Rock crushes Scissors'
 }
 
+MODES = {
+    'continuous': '1',
+    'best_of_5': '2'
+}
+
+BEST_OF_FIVE_ROUNDS = 5
+
 def clear():
     _ = call('clear' if os.name == 'posix' else 'cls')
 
@@ -76,13 +83,13 @@ def display_mode_selector():
            '                 (2) Best of five')
     blank_line()
 
-def choose_mode():
+def select_mode():
     while True:
         mode_input = input('Mode: ')
         mode_cleaned = mode_input.strip(' ()')
         blank_line()
 
-        if mode_cleaned in ['1', '2']:
+        if mode_cleaned in MODES.values():
             break
 
         prompt(f'{mode_input} is an invalid choice.')
@@ -119,11 +126,17 @@ def get_computer_choice():
     return computer_choice
 
 def determine_winner(player, computer):
+    # The choices are in the following order:
+    #    rock --> lizard --> spock --> scissors --> paper --> (back to rock)
+    # Each choice wins against the choices that are one and three positions to
+    # the right. For example, rock wins against lizard and scissors, scissors
+    # wins against paper and lizard, etc.
     player_choice_index = VALID_CHOICES.index(player)
     player_choice_wins = [(VALID_CHOICES.index(player) + 1) %
                           len(VALID_CHOICES),
                           (VALID_CHOICES.index(player) + 3) %
                           len(VALID_CHOICES)]
+
     computer_choice_index = VALID_CHOICES.index(computer)
 
     if player_choice_index == computer_choice_index:
@@ -214,7 +227,7 @@ def play_again(scores, mode):
             clear()
             break
 
-        if mode == '1':
+        if mode == MODES['continuous']:
             play_rpsls(scores)
         else:
             main()
@@ -225,20 +238,20 @@ def next_round():
 
 def continuous_play(scores):
     play_rpsls(scores)
-    play_again(scores, '1')
+    play_again(scores, MODES['continuous'])
 
 def best_of_five(scores):
     rounds = 0
 
-    while rounds < 5:
+    while rounds < BEST_OF_FIVE_ROUNDS:
         play_rpsls(scores)
         rounds = sum(scores.values())
 
-        if rounds < 5:
+        if rounds < BEST_OF_FIVE_ROUNDS:
             next_round()
 
     display_grand_winner(scores)
-    play_again(scores, '2')
+    play_again(scores, MODES['best_of_5'])
 
 def main():
     scores = reset_scores()
@@ -247,9 +260,9 @@ def main():
     display_welcome_banner()
     display_mode_selector()
 
-    mode = choose_mode()
+    mode = select_mode()
 
-    if mode == '1':
+    if mode == MODES['continuous']:
         continuous_play(scores)
     else:
         best_of_five(scores)
