@@ -1,0 +1,8 @@
+nan_value = float("nan")
+
+print(nan_value == float("nan"))
+
+
+$ False
+
+To reliably test if a value is nan, use math.isnan().
