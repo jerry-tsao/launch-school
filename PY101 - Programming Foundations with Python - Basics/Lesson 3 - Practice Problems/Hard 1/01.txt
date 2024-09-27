@@ -1,0 +1,18 @@
+def first():
+    return {
+        'prop1': "hi there",
+    }
+
+def second():
+    return
+    {
+        'prop1': "hi there",
+    }
+
+print(first())
+print(second())
+
+
+The two functions return different results. first() returns the dictionary, as
+expected. second() returns None since there is nothing else on the same line
+after return.

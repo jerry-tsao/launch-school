@@ -1,0 +1,7 @@
+if False:
+    greeting = "hello world"
+
+print(greeting)
+
+
+The print statement will raise a NameError.
